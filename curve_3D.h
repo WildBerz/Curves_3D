@@ -9,7 +9,7 @@
 #define M_PI	3.1415926535897932384626433832795
 #define M_2PI	6.283185307179586476925286766559
 
-/* типы кривых */
+/* С‚РёРїС‹ РєСЂРёРІС‹С… */
 #define CIRCLE		1
 #define ELLIPSE		2
 #define HELIX		3
@@ -21,7 +21,7 @@ struct point
 	double z;
 };
 
-/* базовый класс периодических кривых в 3-мерном пространстве */
+/* Р±Р°Р·РѕРІС‹Р№ РєР»Р°СЃСЃ РїРµСЂРёРѕРґРёС‡РµСЃРєРёС… РєСЂРёРІС‹С… РІ 3-РјРµСЂРЅРѕРј РїСЂРѕСЃС‚СЂР°РЅСЃС‚РІРµ */
 class CLASS_DECLSPEC periodic_curve_3D
 {
 public:
@@ -35,13 +35,13 @@ public:
 	virtual double getStep();
 
 private:
-	int typeOfCurve;	// тип кривой
-	double a;			// большая полуось (semi-major axis)
-	double b;			// малая полуось (semi-minor axis)
-	double step;		// шаг винтовой кривой
+	int typeOfCurve;	// С‚РёРї РєСЂРёРІРѕР№
+	double a;		// Р±РѕР»СЊС€Р°СЏ РїРѕР»СѓРѕСЃСЊ (semi-major axis)
+	double b;		// РјР°Р»Р°СЏ РїРѕР»СѓРѕСЃСЊ (semi-minor axis)
+	double step;		// С€Р°Рі РІРёРЅС‚РѕРІРѕР№ РєСЂРёРІРѕР№
 };
 
-/* производный класс плоских окружностей */
+/* РїСЂРѕРёР·РІРѕРґРЅС‹Р№ РєР»Р°СЃСЃ РїР»РѕСЃРєРёС… РѕРєСЂСѓР¶РЅРѕСЃС‚РµР№ */
 class CLASS_DECLSPEC Circle : public periodic_curve_3D
 {
 public:
@@ -51,7 +51,7 @@ public:
 	int getType();
 };
 
-/* производный класс плоских эллипсов */
+/* РїСЂРѕРёР·РІРѕРґРЅС‹Р№ РєР»Р°СЃСЃ РїР»РѕСЃРєРёС… СЌР»Р»РёРїСЃРѕРІ */
 class CLASS_DECLSPEC ellipse : public periodic_curve_3D
 {
 public:
@@ -61,7 +61,7 @@ public:
 	int getType();
 };
 
-/* производный класс винтовой кривой (3D) */
+/* РїСЂРѕРёР·РІРѕРґРЅС‹Р№ РєР»Р°СЃСЃ РІРёРЅС‚РѕРІРѕР№ РєСЂРёРІРѕР№ (3D) */
 class CLASS_DECLSPEC Helix_3D : public periodic_curve_3D
 {
 public:
