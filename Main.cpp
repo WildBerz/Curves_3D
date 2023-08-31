@@ -1,4 +1,4 @@
-// Main.cpp: определяет точку входа для консольного приложения.
+// Main.cpp: РѕРїСЂРµРґРµР»СЏРµС‚ С‚РѕС‡РєСѓ РІС…РѕРґР° РґР»СЏ РєРѕРЅСЃРѕР»СЊРЅРѕРіРѕ РїСЂРёР»РѕР¶РµРЅРёСЏ.
 //
 
 #include "stdafx.h"
@@ -19,7 +19,7 @@ void printToFile(std::ofstream* out, char* title, point P)
 	*out << title << '\t' << P.x << '\t' << P.y << '\t' << P.z << '\n';
 }
 
-/* функция-компаратор для сортировки методами библиотеки STL */
+/* С„СѓРЅРєС†РёСЏ-РєРѕРјРїР°СЂР°С‚РѕСЂ РґР»СЏ СЃРѕСЂС‚РёСЂРѕРІРєРё РјРµС‚РѕРґР°РјРё Р±РёР±Р»РёРѕС‚РµРєРё STL */
 bool comparator(periodic_curve_3D* a, periodic_curve_3D* b)
 {
 	return a->getSemiMajorAxis() < b->getSemiMajorAxis();
@@ -32,19 +32,19 @@ int main(int argc, _TCHAR* argv[])
 	std::ofstream* out = new std::ofstream;
 	out->open(path, std::ios_base::out);
 
-	std::vector <periodic_curve_3D> box_one;	// первый контейнер
+	std::vector <periodic_curve_3D> box_one;	// РїРµСЂРІС‹Р№ РєРѕРЅС‚РµР№РЅРµСЂ
 
-	double a, b, step;		// большая, малая полуоси и шаг винтовой кривой
+	double a, b, step;				// Р±РѕР»СЊС€Р°СЏ, РјР°Р»Р°СЏ РїРѕР»СѓРѕСЃРё Рё С€Р°Рі РІРёРЅС‚РѕРІРѕР№ РєСЂРёРІРѕР№
 	int type;
-	int N = round((double)rand() / RAND_MAX * 50) + 50;	// количество объектов в первом контейнере
+	int N = round((double)rand() / RAND_MAX * 50) + 50;	// РєРѕР»РёС‡РµСЃС‚РІРѕ РѕР±СЉРµРєС‚РѕРІ РІ РїРµСЂРІРѕРј РєРѕРЅС‚РµР№РЅРµСЂРµ
 
-	/* цикл заполнения первого контейнера объектами типов Circle, ellipse, Helix */
+	/* С†РёРєР» Р·Р°РїРѕР»РЅРµРЅРёСЏ РїРµСЂРІРѕРіРѕ РєРѕРЅС‚РµР№РЅРµСЂР° РѕР±СЉРµРєС‚Р°РјРё С‚РёРїРѕРІ Circle, ellipse, Helix */
 	for (int i = 0; i < N; i++)
 	{
-		a = (double)rand() / RAND_MAX * 100.0 + 1;			// случайные
-		b = (double)rand() / RAND_MAX * 100.0 + 1;			// значения
-		step = (double)rand() / RAND_MAX * 20.0;			// типа и параметров
-		type = floor((double)rand() / RAND_MAX * 3) + 1;	// кривых
+		a = (double)rand() / RAND_MAX * 100.0 + 1;		// СЃР»СѓС‡Р°Р№РЅС‹Рµ
+		b = (double)rand() / RAND_MAX * 100.0 + 1;		// Р·РЅР°С‡РµРЅРёСЏ
+		step = (double)rand() / RAND_MAX * 20.0;		// С‚РёРїР° Рё РїР°СЂР°РјРµС‚СЂРѕРІ
+		type = floor((double)rand() / RAND_MAX * 3) + 1;	// РєСЂРёРІС‹С…
 
 		if (type == CIRCLE)
 		{
@@ -63,7 +63,7 @@ int main(int argc, _TCHAR* argv[])
 		}
 	}
 
-	/* печать точек кривых и векторов из первого контейнера на экран и в файл */
+	/* РїРµС‡Р°С‚СЊ С‚РѕС‡РµРє РєСЂРёРІС‹С… Рё РІРµРєС‚РѕСЂРѕРІ РёР· РїРµСЂРІРѕРіРѕ РєРѕРЅС‚РµР№РЅРµСЂР° РЅР° СЌРєСЂР°РЅ Рё РІ С„Р°Р№Р» */
 	for (int i = 0; i < box_one.size(); i++)
 	{
 		char* ch = "";
@@ -91,24 +91,24 @@ int main(int argc, _TCHAR* argv[])
 		printToFile(out, "Coordinates of vector", box_one[i].getVectorOfDerivate(M_PI / 4));
 	}
 
-	std::vector <periodic_curve_3D*> box_two;	// второй контейнер
+	std::vector <periodic_curve_3D*> box_two;	// РІС‚РѕСЂРѕР№ РєРѕРЅС‚РµР№РЅРµСЂ
 
-	/* заполнение второго контейнера указателями на объекты типа Circle из первого */
+	/* Р·Р°РїРѕР»РЅРµРЅРёРµ РІС‚РѕСЂРѕРіРѕ РєРѕРЅС‚РµР№РЅРµСЂР° СѓРєР°Р·Р°С‚РµР»СЏРјРё РЅР° РѕР±СЉРµРєС‚С‹ С‚РёРїР° Circle РёР· РїРµСЂРІРѕРіРѕ */
 	for (int i = 0; i < box_one.size(); i++)
 		if (box_one[i].getType() == CIRCLE)
 			box_two.push_back((periodic_curve_3D*)&box_one[i]);
 
-	/* сортировка объектов во втором контейнере по возрастанию значений радиусов */
+	/* СЃРѕСЂС‚РёСЂРѕРІРєР° РѕР±СЉРµРєС‚РѕРІ РІРѕ РІС‚РѕСЂРѕРј РєРѕРЅС‚РµР№РЅРµСЂРµ РїРѕ РІРѕР·СЂР°СЃС‚Р°РЅРёСЋ Р·РЅР°С‡РµРЅРёР№ СЂР°РґРёСѓСЃРѕРІ */
 	sort(box_two.begin(), box_two.end(), comparator);
 
-	/* результат сортировки */
+	/* СЂРµР·СѓР»СЊС‚Р°С‚ СЃРѕСЂС‚РёСЂРѕРІРєРё */
 	std::cout << "\nSort result\n";
 	for (int i = 0; i < box_two.size(); i++)
 			std::cout << box_two[i]->getSemiMajorAxis() << '\n';
 
 	double sumRadius = 0.0;
 
-	/* вычисление суммы радиусов окружностей во втором контейнере */
+	/* РІС‹С‡РёСЃР»РµРЅРёРµ СЃСѓРјРјС‹ СЂР°РґРёСѓСЃРѕРІ РѕРєСЂСѓР¶РЅРѕСЃС‚РµР№ РІРѕ РІС‚РѕСЂРѕРј РєРѕРЅС‚РµР№РЅРµСЂРµ */
 	for (int i = 0; i < box_two.size(); i++)
 		sumRadius += box_two[i]->getSemiMajorAxis();
 
